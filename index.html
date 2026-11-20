@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caça-vagas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* VOICE: energético e confiante, de quem vai achar a vaga antes dos outros
+   IDEA: classificados de jornal marcados com marca-texto, vistos por uma lupa
+   PICTURE: páginas de classificados com anúncios circulados em amarelo, lupa e etiquetas das fontes flutuando
+   COLOUR and TYPE: cobalto #2340ff dominante, branco de apoio, marca-texto #ffe14d; coral, verde e amarelo marcam os tipos; Archivo 900 + Archivo
+   LAYOUT: faixa cobalto com busca à esquerda e ilustração à direita; abas fixas; grade de cartões; dicas em cartões */
+:root{color-scheme:light dark;--bg:light-dark(#f4f5fb,#0e1020);--ink:light-dark(#10132b,#eef0ff);--mute:light-dark(#585d7a,#a3a8c7);--card:light-dark(#ffffff,#181b33);--line:light-dark(#e1e3ef,#2a2e4d);--cob:#2340ff;--cob2:#1a2fd1;--hl:#ffe14d;--coral:#ff6a4d;--teal:#0fae7f;--deep:#10132b}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Archivo,system-ui,sans-serif;overflow-x:clip}
+.band{padding:clamp(28px,4vw,64px) max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+a{color:inherit}
+input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+
+/* HERO */
+.hero{background:radial-gradient(1200px 600px at 85% 20%,#3d58ff 0%,transparent 60%),linear-gradient(160deg,var(--cob) 0%,var(--cob2) 100%);color:#fff;position:relative;overflow:hidden;padding-bottom:clamp(40px,5vw,72px)}
+.hero:after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.09) 1px,transparent 1px);background-size:22px 22px;pointer-events:none}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(24px,4vw,56px);align-items:center}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;margin-bottom:clamp(20px,3vw,36px)}
+.brand i{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--hl);color:var(--deep);font-style:normal;font-weight:900}
+h1{font-size:clamp(36px,5.4vw,58px);line-height:1.02;margin:0 0 14px;font-weight:900;letter-spacing:-.025em;text-wrap:balance}
+h1 span{background:linear-gradient(transparent 58%,var(--hl) 58%,var(--hl) 92%,transparent 92%);color:#fff;padding:0 .06em}
+.lead{font-size:18px;opacity:.9;margin:0 0 24px;max-width:46ch}
+.panel{background:#fff;color:var(--deep);border-radius:20px;padding:18px;box-shadow:0 24px 60px -20px rgba(5,10,60,.55),0 0 0 6px rgba(255,255,255,.12)}
+.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.7fr);gap:10px}
+.field{position:relative}
+.field label{position:absolute;left:44px;top:8px;font-size:12px;font-weight:700;color:#585d7a}
+.field svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:var(--cob)}
+.field input,.field select{width:100%;height:60px;font:inherit;font-size:16px;font-weight:600;color:var(--deep);background:#f2f3fa;border:2px solid transparent;border-radius:12px;padding:20px 12px 4px 44px;appearance:none}
+.field input:focus,.field select:focus{border-color:var(--cob);background:#fff;outline:none}
+.row2{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;align-items:center}
+.tog{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border-radius:999px;background:#f2f3fa;font-weight:600;font-size:15px;cursor:pointer;user-select:none}
+.tog input{width:18px;height:18px;accent-color:var(--cob);margin:0}
+.per{flex:1 1 180px}
+.per select{height:44px;padding:0 12px 0 40px;border-radius:999px;font-size:15px}
+.per svg{left:12px;width:18px;height:18px}
+.go{width:100%;margin-top:12px;height:58px;border:0;border-radius:14px;background:var(--deep);color:#fff;font:inherit;font-size:18px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:transform .15s,background .15s}
+.go:hover{background:#000;transform:translateY(-1px)}
+.go b{background:var(--hl);color:var(--deep);border-radius:8px;padding:2px 8px;font-size:14px}
+.stats{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:22px;font-size:15px;opacity:.95}
+.stats div{display:flex;align-items:baseline;gap:6px}
+.stats strong{font-size:26px;font-weight:900;color:var(--hl)}
+.art{position:relative;aspect-ratio:1.15/1}
+.art svg{width:100%;height:100%;display:block;overflow:visible}
+.float{animation:bob 5s ease-in-out infinite}
+.float.b{animation-delay:-1.6s}.float.c{animation-delay:-3.2s}
+@keyframes bob{50%{transform:translateY(-8px)}}
+
+/* AI */
+.ai{display:none;margin-top:14px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:16px;padding:12px 14px}
+.ai.on{display:block}
+.aihead{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between}
+.aihead p{margin:0;font-weight:600;font-size:15px}
+.aibtn{height:44px;padding:0 16px;border-radius:999px;border:0;background:var(--hl);color:var(--deep);font:inherit;font-weight:800;cursor:pointer}
+.aibtn[disabled]{opacity:.6;cursor:wait}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips:not(:empty){margin-top:10px}
+.chip{min-height:40px;padding:0 14px;border-radius:999px;border:1.5px solid rgba(255,255,255,.6);background:transparent;color:#fff;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.chip:hover{background:#fff;color:var(--cob)}
+.aistatus{font-size:14px;opacity:.85;margin-top:6px}
+.aistatus:empty{display:none}
+
+/* BAR */
+.bar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;justify-content:space-between;padding:12px max(5vw,16px)}
+.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 -4px;padding:0 4px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;height:42px;padding:0 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px}
+.tab i{width:10px;height:10px;border-radius:50%;background:var(--c,var(--ink))}
+.tab small{font-weight:600;color:var(--mute)}
+.tab[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tab[aria-pressed=true] small{color:inherit;opacity:.7}
+.prog{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--mute)}
+.prog .track{width:120px;height:8px;border-radius:9px;background:var(--line);overflow:hidden}
+.prog .fill{height:100%;background:var(--teal);border-radius:9px;transition:width .3s}
+
+/* RESULTS */
+.head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:8px 20px;margin-bottom:22px}
+.head h2{margin:0;font-size:clamp(26px,3.4vw,36px);line-height:1.08;font-weight:900;letter-spacing:-.02em;text-wrap:balance}
+.head h2 em{font-style:normal;color:var(--cob)}
+:root[data-theme=dark] .head h2 em{color:#8fa0ff}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .head h2 em{color:#8fa0ff}}
+.head p{margin:0;color:var(--mute)}
+.note{font-size:13px;color:var(--mute);margin:-12px 0 18px}
+.group{margin-bottom:36px}
+.ghead{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.ghead .ic{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--c);color:var(--on,#fff)}
+.ghead .ic svg{width:22px;height:22px}
+.ghead h3{margin:0;font-size:22px;line-height:1.15;font-weight:800}
+.ghead p{margin:0;color:var(--mute);font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:14px}
+.card{position:relative;display:flex;flex-direction:column;gap:8px;padding:18px 18px 16px;background:var(--card);border:1px solid var(--line);border-radius:18px;text-decoration:none;color:var(--ink);transition:transform .18s,box-shadow .18s,border-color .18s;overflow:hidden}
+.card:hover{transform:translateY(-3px);box-shadow:0 18px 40px -18px rgba(16,19,43,.35);border-color:var(--c)}
+.card .top{display:flex;align-items:center;gap:12px}
+.mono{flex:none;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-weight:900;font-size:16px;background:color-mix(in srgb,var(--c) 16%,transparent);color:var(--c)}
+.card[data-k=hid] .mono{background:var(--hl);color:var(--deep)}
+.card b{font-size:17px;line-height:1.25;font-weight:800}
+.card small{color:var(--mute);font-size:14.5px;line-height:1.45;flex:1}
+.card .foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:4px;padding-top:12px;border-top:1px dashed var(--line)}
+.badge{font-size:12.5px;font-weight:800;padding:3px 9px;border-radius:999px;background:var(--hl);color:var(--deep)}
+.open{font-weight:800;font-size:15px;color:var(--c);display:flex;align-items:center;gap:6px;white-space:nowrap}
+.card[data-k=hid] .open{color:var(--ink)}
+.card.seen{opacity:.72}
+.card.seen .open:after{content:"✓ aberta";font-size:13px;color:var(--teal);margin-left:6px}
+.card.seen .open span{display:none}
+
+/* TIPS */
+.tips{background:var(--deep);color:#fff}
+.tips h2{margin:0 0 6px;font-size:clamp(26px,3.4vw,36px);font-weight:900;letter-spacing:-.02em}
+.tips>.wrap>p{margin:0 0 24px;opacity:.8}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px}
+.tip{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:20px}
+.tip .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--hl);color:var(--deep);margin-bottom:12px}
+.tip .ic svg{width:22px;height:22px}
+.tip b{display:block;font-size:17px;margin-bottom:4px}
+.tip p{margin:0;opacity:.82;font-size:15px}
+footer{background:var(--deep);color:rgba(255,255,255,.6);font-size:14px;padding:0 max(5vw,16px) 32px}
+footer .wrap{border-top:1px solid rgba(255,255,255,.12);padding-top:18px}
+
+@media(max-width:900px){.hero .wrap{grid-template-columns:minmax(0,1fr)}.art{order:-1;max-width:420px;width:100%;margin:-8px auto 0;aspect-ratio:1.5/1}.brand{margin-bottom:8px}}
+@media(max-width:600px){.row{grid-template-columns:minmax(0,1fr)}.prog .track{width:80px}.lead{font-size:16px}.art{aspect-ratio:1.6/1}}
+@media(prefers-reduced-motion:reduce){.float{animation:none}.card,.go{transition:none}.card:hover{transform:none}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></g></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></g></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18"/></g></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/><path d="M4 4l16 16" stroke-linecap="round"/></g></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4V5Z"/><path d="M8 9.5h8M8 12.5h5" stroke-linecap="round"/></g></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5L2 9Z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/></g></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15L6 16Z"/><path d="M10 21h4"/></g></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h14l-3-3M20 16H6l3 3"/></g></symbol>
+</svg>
+
+<header class="hero band">
+  <div class="wrap">
+    <div>
+      <div class="brand"><i>CV</i> Caça-vagas</div>
+      <h1>Ache a vaga <span>antes</span> de todo mundo.</h1>
+      <p class="lead">Digite sua área e abra, de uma vez, buscas prontas em 30 lugares, inclusive as vagas que as empresas anunciam de graça e não aparecem nos portais.</p>
+      <form class="panel" id="f" autocomplete="off">
+        <div class="row">
+          <div class="field"><svg><use href="#i-search"/></svg><label for="area">Área ou cargo</label><input id="area" type="text" placeholder="ex.: auxiliar administrativo" required></div>
+          <div class="field"><svg><use href="#i-pin"/></svg><label for="city">Cidade</label><input id="city" type="text" placeholder="opcional"></div>
+        </div>
+        <div class="row2">
+          <div class="field per"><svg><use href="#i-clock"/></svg><select id="per" aria-label="Período de publicação"><option value="">Qualquer data</option><option value="d">Últimas 24 horas</option><option value="w" selected>Última semana</option><option value="m">Último mês</option></select></div>
+          <label class="tog"><input type="checkbox" id="rem"> Só remoto</label>
+          <label class="tog"><input type="checkbox" id="exact"> Termo exato</label>
+        </div>
+        <button class="go" type="submit">Buscar vagas <b>30 fontes</b></button>
+      </form>
+      <div class="ai" id="ai">
+        <div class="aihead"><p>Procurando com outros nomes você acha mais vagas.</p><button type="button" class="aibtn" id="aiBtn">Sugerir cargos parecidos</button></div>
+        <div class="aistatus" id="aiStatus"></div>
+        <div class="chips" id="chips"></div>
+      </div>
+      <div class="stats">
+        <div><strong>30</strong> fontes</div>
+        <div><strong>9</strong> com vagas escondidas</div>
+        <div><strong>8</strong> de anúncios gratuitos</div>
+      </div>
+    </div>
+
+    <div class="art" aria-hidden="true">
+      <svg viewBox="0 0 520 450">
+        <defs>
+          <linearGradient id="pg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9ecff"/></linearGradient>
+          <linearGradient id="lens" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".55"/><stop offset="1" stop-color="#bfc9ff" stop-opacity=".15"/></linearGradient>
+          <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#050a3c" flood-opacity=".45"/></filter>
+          <g id="lines"><rect width="96" height="7" rx="3.5" fill="#cfd5f5"/><rect y="14" width="80" height="7" rx="3.5" fill="#cfd5f5"/><rect y="28" width="90" height="7" rx="3.5" fill="#cfd5f5"/></g>
+        </defs>
+        <ellipse cx="270" cy="420" rx="200" ry="16" fill="#050a3c" opacity=".25"/>
+        <g transform="rotate(-8 230 230)" filter="url(#sh)"><rect x="70" y="50" width="300" height="360" rx="14" fill="#dfe4ff"/></g>
+        <g transform="rotate(4 270 230)" filter="url(#sh)">
+          <rect x="110" y="40" width="310" height="370" rx="14" fill="url(#pg)"/>
+          <rect x="134" y="62" width="160" height="16" rx="5" fill="#10132b"/>
+          <rect x="134" y="86" width="262" height="4" rx="2" fill="#10132b"/>
+          <rect x="134" y="94" width="262" height="2" rx="1" fill="#10132b"/>
+          <g transform="translate(134 112)"><rect width="124" height="12" rx="3" fill="#2340ff"/><use href="#lines" y="22"/><use href="#lines" y="80"/><use href="#lines" y="138"/><use href="#lines" y="196"/></g>
+          <g transform="translate(272 112)"><rect width="110" height="12" rx="3" fill="#ff6a4d"/><use href="#lines" y="22"/><use href="#lines" y="80"/><use href="#lines" y="138"/><use href="#lines" y="196"/></g>
+          <ellipse cx="185" cy="220" rx="72" ry="34" fill="none" stroke="#ffe14d" stroke-width="7" stroke-linecap="round" stroke-dasharray="380 40" transform="rotate(-6 185 220)"/>
+          <ellipse cx="325" cy="306" rx="66" ry="32" fill="none" stroke="#ffe14d" stroke-width="7" stroke-linecap="round" stroke-dasharray="350 50" transform="rotate(5 325 306)"/>
+          <rect x="134" y="360" width="248" height="26" rx="6" fill="#ffe14d" opacity=".9"/>
+          <rect x="146" y="369" width="120" height="8" rx="4" fill="#10132b" opacity=".8"/>
+        </g>
+        <g filter="url(#sh)">
+          <rect x="356" y="300" width="26" height="110" rx="13" transform="rotate(-38 369 355)" fill="#10132b"/>
+          <circle cx="330" cy="250" r="74" fill="#10132b"/>
+          <circle cx="330" cy="250" r="60" fill="url(#lens)"/>
+          <path d="M290 222a48 48 0 0 1 40-26" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".85"/>
+        </g>
+        <g class="float"><g filter="url(#sh)"><rect x="0" y="96" width="172" height="46" rx="23" fill="#ffffff"/><circle cx="24" cy="119" r="10" fill="#ffe14d"/><text x="42" y="125" font-family="Archivo,sans-serif" font-weight="800" font-size="16" fill="#10132b">Site da empresa</text></g></g>
+        <g class="float b"><g filter="url(#sh)"><rect x="326" y="32" width="180" height="46" rx="23" fill="#ff6a4d"/><circle cx="350" cy="55" r="10" fill="#fff"/><text x="368" y="61" font-family="Archivo,sans-serif" font-weight="800" font-size="16" fill="#fff">Grupo de vagas</text></g></g>
+        <g class="float c"><g filter="url(#sh)"><rect x="20" y="300" width="132" height="46" rx="23" fill="#0fae7f"/><circle cx="44" cy="323" r="10" fill="#fff"/><text x="62" y="329" font-family="Archivo,sans-serif" font-weight="800" font-size="16" fill="#fff">Nova hoje</text></g></g>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<nav class="bar" id="bar" hidden><div class="wrap">
+  <div class="tabs" id="tabs"></div>
+  <div class="prog"><span id="progTxt">0 de 30 abertas</span><div class="track"><div class="fill" id="fill" style="width:0%"></div></div></div>
+</div></nav>
+
+<main class="band"><div class="wrap" id="out"></div></main>
+
+<section class="tips band"><div class="wrap">
+  <h2>Como achar as vagas que pouca gente vê</h2>
+  <p>Quatro hábitos que aumentam muito suas chances.</p>
+  <div class="tgrid">
+    <div class="tip"><div class="ic"><svg><use href="#i-eye"/></svg></div><b>Comece pelas escondidas</b><p>Muitas empresas publicam só no próprio sistema de recrutamento (Gupy, Sólides, InHire…) e não pagam portal. O Google indexa essas páginas, e é isso que os cartões amarelos usam.</p></div>
+    <div class="tip"><div class="ic"><svg><use href="#i-chat"/></svg></div><b>Entre nos grupos locais</b><p>Comércio, serviços e indústria anunciam de graça em grupos de Facebook, Instagram e Telegram. Entre nos da sua cidade e ative as notificações.</p></div>
+    <div class="tip"><div class="ic"><svg><use href="#i-bell"/></svg></div><b>Repita a cada 2 ou 3 dias</b><p>Use "última semana" e volte com frequência. Vaga nova recebe menos candidatos, e quem se inscreve primeiro costuma ser visto primeiro.</p></div>
+    <div class="tip"><div class="ic"><svg><use href="#i-swap"/></svg></div><b>Troque o nome do cargo</b><p>"Auxiliar de escritório" e "assistente administrativo" são a mesma vaga com nomes diferentes. Teste variações, e a sugestão com IA ajuda nisso.</p></div>
+  </div>
+</div></section>
+<footer><div class="wrap">O Caça-vagas monta as buscas e abre cada uma no site de origem; a inscrição acontece lá, direto com a empresa ou o portal.</div></footer>
+
+<script>
+{
+const $=id=>document.getElementById(id);
+const enc=encodeURIComponent;
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const YEAR=new Date().getFullYear();
+const ATS=['gupy.io','vagas.solides.com.br','jobs.kenoby.com','pandape.infojobs.com.br','inhire.app','jobs.quickin.io','recrutei.com.br','jobs.lever.co','boards.greenhouse.io','apply.workable.com','breezy.hr'];
+const GROUPS={
+  all:{n:'Todas'},
+  big:{n:'Grandes portais',c:'#2340ff',icon:'i-globe',p:'Onde a maioria procura. Vale passar, mas a concorrência é maior.'},
+  hid:{n:'Escondidas',c:'#e0b400',on:'#10132b',icon:'i-eye',p:'Vagas publicadas só no sistema de recrutamento da própria empresa, sem anúncio pago.'},
+  free:{n:'Anúncios gratuitos',c:'#ff6a4d',icon:'i-chat',p:'Onde comércio, serviços e pequenas empresas anunciam de graça.'},
+  edu:{n:'Estágio e concursos',c:'#0fae7f',icon:'i-cap',p:'Para quem está começando ou quer o setor público.'}
+};
+const GTITLE={big:'Grandes portais',hid:'Escondidas nos sites das empresas',free:'Anúncios gratuitos e redes sociais',edu:'Estágio, trainee e concursos'};
+let tab='all', seen=new Set(), sample=null, TOTAL=30;
+
+function ctx(){
+  const raw=$('area').value.trim(), city=$('city').value.trim();
+  const a=$('exact').checked?`"${raw}"`:raw;
+  const rem=$('rem').checked, per=$('per').value;
+  const remQ=rem?' (remoto OR "home office")':'';
+  const loc=city&&!rem?` ${city}`:'';
+  const G=(q,o={})=>'https://www.google.com/search?q='+enc(q)+(o.jobs?'&ibp=htl;jobs':'')+(per&&!o.jobs?'&tbs=qdr:'+per:'');
+  const S=site=>G(`site:${site} ${a}${loc}${remQ}`);
+  return {raw,a,city,rem,per,remQ,loc,G,S};
+}
+
+function items(c){
+  const {raw,a,city,rem,per,remQ,loc,G,S}=c;
+  const li={d:'r86400',w:'r604800',m:'r2592000'}[per], ind={d:1,w:7,m:30}[per];
+  const L=city&&!rem?' '+city:'';
+  return {
+  big:[
+    {m:'G',n:'Google Vagas',d:'Junta anúncios de dezenas de sites numa lista só.',u:G(`vagas ${raw}${loc}${rem?' remoto':''}`,{jobs:1}),top:1},
+    {m:'in',n:'LinkedIn Vagas',d:'Vagas formais, muitas com candidatura simplificada.',u:`https://www.linkedin.com/jobs/search/?keywords=${enc(raw)}&location=${enc(city&&!rem?city:'Brasil')}${li?'&f_TPR='+li:''}${rem?'&f_WT=2':''}`},
+    {m:'Id',n:'Indeed',d:'Grande volume de vagas de todos os níveis.',u:`https://br.indeed.com/jobs?q=${enc(raw+(rem?' remoto':''))}&l=${enc(rem?'':city)}${ind?'&fromage='+ind:''}`},
+    {m:'Gp',n:'Portal Gupy',d:'Vagas de milhares de empresas que usam a Gupy.',u:`https://portal.gupy.io/job-search/term=${enc(raw)}`},
+    {m:'Ca',n:'Catho',d:'Busca dentro do Catho pelo Google.',u:S('catho.com.br')},
+    {m:'IJ',n:'InfoJobs',d:'Busca dentro do InfoJobs pelo Google.',u:S('infojobs.com.br')},
+    {m:'V',n:'Vagas.com',d:'Busca dentro do Vagas.com pelo Google.',u:S('vagas.com.br')},
+    {m:'Gd',n:'Glassdoor',d:'Vagas com a avaliação da empresa ao lado.',u:S('glassdoor.com.br')},
+    {m:'BN',n:'BNE e Trabalha Brasil',d:'Portais com muitas vagas operacionais.',u:G(`(site:bne.com.br OR site:trabalhabrasil.com.br) ${a}${loc}${remQ}`)}
+  ],
+  hid:[
+    {m:'★',n:'Todos os sistemas de uma vez',d:'Gupy, Sólides, Kenoby, InHire, Lever e outros numa busca só.',u:G(`(${ATS.map(s=>'site:'+s).join(' OR ')}) ${a}${loc}${remQ}`),top:1},
+    {m:'Gp',n:'Páginas de carreira na Gupy',d:'O site de vagas de cada empresa (empresa.gupy.io).',u:S('gupy.io')},
+    {m:'Só',n:'Sólides Vagas',d:'Muito usada por pequenas e médias empresas.',u:S('vagas.solides.com.br')},
+    {m:'Kn',n:'Kenoby',d:'Sistema usado por médias e grandes empresas.',u:S('jobs.kenoby.com')},
+    {m:'Pd',n:'Pandapé',d:'Sistema de recrutamento ligado ao InfoJobs.',u:S('pandape.infojobs.com.br')},
+    {m:'IH',n:'InHire e Quickin',d:'Comuns em empresas de tecnologia e serviços.',u:G(`(site:inhire.app OR site:jobs.quickin.io) ${a}${loc}${remQ}`)},
+    {m:'Rc',n:'Recrutei',d:'Empresas brasileiras de vários setores.',u:S('recrutei.com.br')},
+    {m:'Lv',n:'Lever, Greenhouse e Workable',d:'Startups e multinacionais, muitas remotas.',u:G(`(site:jobs.lever.co OR site:boards.greenhouse.io OR site:apply.workable.com OR site:breezy.hr) ${a}${loc}${remQ}`)},
+    {m:'TC',n:'"Trabalhe conosco"',d:'Páginas de carreira nos sites próprios das empresas.',u:G(`"trabalhe conosco" ${a}${loc}${remQ}`)}
+  ],
+  free:[
+    {m:'f',n:'Grupos de Facebook',d:'Grupos de vagas da cidade e posts de "estamos contratando".',u:G(`site:facebook.com (vaga OR vagas OR contratando) ${a}${loc}${remQ}`),top:1},
+    {m:'Ig',n:'Instagram',d:'Lojas, clínicas e empresas locais contratando.',u:G(`site:instagram.com (vaga OR contratando) ${a}${loc}${remQ}`)},
+    {m:'in',n:'Publicações no LinkedIn',d:'Recrutadores postando vagas no feed, fora da aba Vagas.',u:`https://www.linkedin.com/search/results/content/?keywords=${enc('contratando '+raw+L+(rem?' remoto':''))}&sortBy=%22date_posted%22`},
+    {m:'Tg',n:'Canais de Telegram',d:'Canais que repostam vagas por área ou cidade.',u:G(`site:t.me vagas ${a}${loc}${remQ}`)},
+    {m:'OLX',n:'OLX Empregos',d:'Anúncios diretos de pequenos empregadores.',u:S('olx.com.br')},
+    {m:'X',n:'X (Twitter)',d:'Vagas compartilhadas por pessoas e empresas.',u:G(`(site:x.com OR site:twitter.com) (vaga OR contratando) ${a}${loc}${remQ}`)},
+    {m:'SN',n:'SINE e prefeituras',d:'Vagas do SINE e de órgãos públicos em sites .gov.br.',u:G(`site:gov.br vagas ${a}${loc}`)},
+    {m:'Jr',n:'Jornais e portais locais',d:'Listas semanais de vagas publicadas pela imprensa da região.',u:G(`(classificados OR "vagas de emprego") ${a}${loc}`)}
+  ],
+  edu:[
+    {m:'CI',n:'CIEE',d:'Vagas de estágio e jovem aprendiz.',u:S('ciee.org.br')},
+    {m:'Nb',n:'NUBE',d:'Estágio e aprendiz em todo o país.',u:S('nube.com.br')},
+    {m:'Tr',n:'Programas de trainee',d:`Programas com inscrições abertas em ${YEAR} e ${YEAR+1}.`,u:G(`programa de trainee ${raw} ${YEAR} inscrições abertas`)},
+    {m:'Cp',n:'Concursos públicos',d:'Concursos e seleções abertas na área.',u:G(`concurso ${raw}${loc} inscrições abertas site:pciconcursos.com.br`)}
+  ]};
+}
+
+function key(){return 'cvseen:'+$('area').value.trim().toLowerCase()}
+function loadSeen(){try{seen=new Set(JSON.parse(localStorage.getItem(key())||'[]'))}catch(e){seen=new Set()}}
+function saveSeen(){try{localStorage.setItem(key(),JSON.stringify([...seen]))}catch(e){}}
+
+function progress(total){
+  $('progTxt').textContent=`${seen.size} de ${total} abertas`;
+  $('fill').style.width=(total?Math.min(100,seen.size/total*100):0)+'%';
+}
+
+function render(scroll){
+  const c=ctx();
+  if(!c.raw){$('out').innerHTML='';$('bar').hidden=true;return}
+  loadSeen();
+  const all=items(c);
+  const total=TOTAL=Object.values(all).reduce((n,l)=>n+l.length,0);
+  $('bar').hidden=false;
+  $('tabs').innerHTML=Object.entries(GROUPS).map(([k,g])=>`<button type="button" class="tab" data-t="${k}" aria-pressed="${tab===k}" style="--c:${g.c||'currentColor'}">${k==='all'?'':'<i></i>'}${esc(g.n)} <small>${k==='all'?total:all[k].length}</small></button>`).join('');
+  const where=c.rem?'em vagas remotas':(c.city?'em '+c.city:'em todo o Brasil');
+  const keys=tab==='all'?Object.keys(all):[tab];
+  $('out').innerHTML=`<div class="head"><h2>Vagas de <em>${esc(c.raw)}</em> ${esc(where)}</h2><p>${esc($('per').selectedOptions[0].text)} · toque num cartão para abrir a busca</p></div>
+  ${keys.map(k=>{const g=GROUPS[k];return `<section class="group"><div class="ghead"><div class="ic" style="--c:${g.c};--on:${g.on||'#fff'}"><svg><use href="#${g.icon}"/></svg></div><div><h3>${esc(GTITLE[k])}</h3><p>${esc(g.p)}</p></div></div>
+    <div class="grid">${all[k].map(i=>`<a class="card${seen.has(i.n)?' seen':''}" data-k="${k}" data-n="${esc(i.n)}" style="--c:${g.c}" href="${esc(i.u)}" target="_blank" rel="noopener">
+      <div class="top"><div class="mono">${esc(i.m)}</div><b>${esc(i.n)}</b></div>
+      <small>${esc(i.d)}</small>
+      <div class="foot">${i.top?'<span class="badge">Comece aqui</span>':'<span></span>'}<span class="open"><span>Abrir busca →</span></span></div></a>`).join('')}</div></section>`}).join('')}`;
+  progress(total);
+  try{localStorage.setItem('cv',JSON.stringify({a:$('area').value,c:$('city').value,p:$('per').value,r:$('rem').checked,e:$('exact').checked}))}catch(e){}
+  if(scroll)$('bar').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});
+}
+
+$('out').addEventListener('click',e=>{const a=e.target.closest('.card');if(!a)return;seen.add(a.dataset.n);saveSeen();a.classList.add('seen');progress(TOTAL)});
+$('tabs').addEventListener('click',e=>{const b=e.target.closest('.tab');if(!b)return;tab=b.dataset.t;render(true)});
+$('f').addEventListener('submit',e=>{e.preventDefault();tab='all';render(true)});
+['per','rem','exact'].forEach(id=>$(id).addEventListener('change',()=>{if($('area').value.trim())render()}));
+
+let restored=false;
+try{const s=JSON.parse(localStorage.getItem('cv')||'null');if(s&&s.a){$('area').value=s.a;$('city').value=s.c||'';$('per').value=s.p??'w';$('rem').checked=!!s.r;$('exact').checked=!!s.e;restored=true}}catch(e){}
+if(!restored)$('area').value='auxiliar administrativo';
+render();
+
+(async()=>{
+  try{sample=await window.claude?.use?.('sample')}catch(e){sample=null}
+  if(sample)$('ai').classList.add('on');
+})();
+
+$('aiBtn').addEventListener('click',async()=>{
+  const raw=$('area').value.trim();
+  if(!raw){$('aiStatus').textContent='Escreva uma área primeiro.';return}
+  if(!sample)return;
+  $('aiBtn').disabled=true;$('aiStatus').textContent='Pensando em cargos parecidos…';$('chips').innerHTML='';
+  try{
+    const r=await sample.json(`Você ajuda candidatos a emprego no Brasil. Para a área ou cargo "${raw}", liste de 6 a 10 títulos de vaga em português, como aparecem em anúncios brasileiros reais, incluindo sinônimos, variações de nível (auxiliar, assistente, analista, júnior) e cargos vizinhos onde a mesma pessoa poderia se candidatar. Responda só com JSON no formato {"cargos":["..."]}.`,{modelTier:'quick'});
+    const list=(r&&Array.isArray(r.cargos)?r.cargos:[]).filter(x=>typeof x==='string').slice(0,10);
+    $('aiStatus').textContent=list.length?'Toque num cargo para buscar por ele:':'Não veio nenhuma sugestão. Tente de novo.';
+    $('chips').innerHTML=list.map(x=>`<button type="button" class="chip">${esc(x)}</button>`).join('');
+  }catch(err){
+    $('aiStatus').textContent=err&&err.code==='not_granted'?'Sugestões com IA indisponíveis aqui.':'Não deu certo agora. Tente de novo em instantes.';
+    if(err&&err.code==='not_granted')$('ai').classList.remove('on');
+  }finally{$('aiBtn').disabled=false}
+});
+$('chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;$('area').value=b.textContent;tab='all';render(true)});
+}
+</script>
+</body>
+</html>
