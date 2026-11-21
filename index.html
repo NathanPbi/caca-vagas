@@ -126,6 +126,108 @@ h1 span{background:linear-gradient(transparent 58%,var(--hl) 58%,var(--hl) 92%,t
 footer{background:var(--deep);color:rgba(255,255,255,.6);font-size:14px;padding:0 max(5vw,16px) 32px}
 footer .wrap{border-top:1px solid rgba(255,255,255,.12);padding-top:18px}
 
+/* MODOS E CURRÍCULO */
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:#eceefa;border-radius:14px;padding:5px;margin-bottom:12px}
+.mode{display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;border:0;border-radius:10px;background:transparent;color:#3a3f5c;font:inherit;font-weight:700;font-size:15px;cursor:pointer}
+.mode svg{width:18px;height:18px}
+.mode[aria-pressed=true]{background:#fff;color:var(--cob);box-shadow:0 4px 12px -6px rgba(16,19,43,.35)}
+.newtag{background:var(--hl);color:var(--deep);font-size:11px;font-weight:800;padding:1px 7px;border-radius:999px}
+.drop{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;padding:22px 16px;border:2px dashed #b9c0ea;border-radius:16px;background:#f5f6fd;cursor:pointer;transition:border-color .15s,background .15s}
+.drop:hover,.drop.over{border-color:var(--cob);background:#eef0ff}
+.drop input{position:absolute;width:1px;height:1px;opacity:0}
+.drop:focus-within{outline:3px solid var(--hl);outline-offset:2px}
+.dropic{width:48px;height:48px;border-radius:14px;background:var(--cob);color:#fff;display:grid;place-items:center;margin-bottom:6px}
+.dropic svg{width:24px;height:24px}
+.drop b{font-size:16px}.drop span{font-size:14px;color:#585d7a}
+.paste{margin-top:10px;font-size:15px}
+.paste summary{cursor:pointer;font-weight:700;color:var(--cob);min-height:32px;display:flex;align-items:center}
+.paste textarea{width:100%;margin-top:6px;border:2px solid #e1e3ef;border-radius:12px;padding:10px 12px;font:inherit;font-size:16px;color:var(--deep);background:#f7f8fd;resize:vertical}
+.mini{height:44px;padding:0 16px;border-radius:12px;border:0;background:var(--cob);color:#fff;font:inherit;font-weight:800;cursor:pointer;margin-top:6px}
+.cvstatus{font-size:15px;font-weight:600;color:var(--cob);margin-top:10px}
+.cvstatus:empty{display:none}
+.cvstatus.err{color:#c2361c}
+.pf-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:14px 0 6px;padding-top:12px;border-top:1px solid #e1e3ef}
+.pf-h b{font-size:18px}
+#pfVia{font-size:12px;font-weight:700;color:#585d7a;background:#eceefa;padding:2px 8px;border-radius:999px}
+.link{border:0;background:none;color:var(--cob);font:inherit;font-weight:700;cursor:pointer;min-height:44px}
+.pf-l{font-weight:800;font-size:14px;margin:10px 0 6px}
+.pf-l small{font-weight:500;color:#585d7a;margin-left:6px}
+.pchips{display:flex;flex-wrap:wrap;gap:6px}
+.pchip{display:inline-flex;align-items:center;gap:4px;min-height:36px;padding:0 4px 0 12px;border-radius:999px;background:#eceefa;font-weight:600;font-size:14.5px;color:var(--deep)}
+.pchip.on{background:var(--cob);color:#fff}
+.pchip button{width:28px;height:28px;border:0;border-radius:50%;background:transparent;color:inherit;font-size:15px;cursor:pointer;opacity:.75}
+.pchip button:hover{opacity:1;background:rgba(0,0,0,.08)}
+.addrow{display:flex;gap:6px;margin-top:6px}
+.addrow input{flex:1;height:44px;border-radius:12px;border:2px solid #e1e3ef;padding:0 12px;font:inherit;font-size:16px;color:var(--deep);background:#fff}
+.addrow .mini{margin:0;background:var(--deep)}
+.priv{display:flex;align-items:center;gap:6px;margin:12px 0 0;font-size:13px;color:#585d7a}
+.priv svg{width:15px;height:15px;flex:none}
+.score{--c:var(--teal);display:flex;flex-direction:column;align-items:center;justify-content:center;width:72px;height:72px;border-radius:50%;background:conic-gradient(var(--c) calc(var(--p)*1%),var(--line) 0);position:relative;font-weight:900;font-size:16px;color:var(--ink)}
+.score:before{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--card)}
+.score>*{position:relative}
+.score small{font-size:9px;letter-spacing:-.01em;font-weight:700;color:var(--mute);margin-top:-3px}
+.score.mid{--c:#e0b400}.score.low{--c:#9aa0c3}
+.bate{grid-column:2/3;margin-top:8px;display:flex;flex-wrap:wrap;gap:5px;align-items:center;font-size:13px;color:var(--mute)}
+.bate span{background:color-mix(in srgb,var(--teal) 14%,transparent);color:var(--teal);font-weight:700;padding:2px 8px;border-radius:999px}
+
+/* LISTA (CTA) */
+.listcta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;background:var(--deep);color:#fff;border-radius:20px;padding:18px 22px;margin-bottom:30px;box-shadow:0 18px 40px -22px rgba(16,19,43,.6)}
+.listcta b{font-size:19px;display:block}
+.listcta span{opacity:.75;font-size:15px}
+.listcta button{height:50px;padding:0 22px;border:0;border-radius:14px;background:var(--hl);color:var(--deep);font:inherit;font-weight:800;font-size:16px;cursor:pointer}
+
+/* MODAL */
+.modal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:clamp(0px,2.5vw,28px)}
+.modal[hidden]{display:none}
+.scrim{position:absolute;inset:0;background:rgba(8,10,30,.62);backdrop-filter:blur(4px);animation:fade .2s}
+.sheet{position:relative;width:min(1120px,100%);height:min(92vh,100%);background:var(--bg);border-radius:24px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 40px 100px -30px rgba(0,0,0,.6);animation:rise .25s ease-out}
+@keyframes fade{from{opacity:0}}@keyframes rise{from{opacity:0;transform:translateY(24px)}}
+.mhead{background:linear-gradient(160deg,var(--cob),var(--cob2));color:#fff;padding:18px clamp(16px,3vw,28px) 16px}
+.mtop{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.mtop h2{margin:0;font-size:clamp(22px,3vw,30px);line-height:1.1;font-weight:900;letter-spacing:-.02em;text-wrap:balance}
+.mtop p{margin:4px 0 0;opacity:.85;font-size:15px}
+.x{flex:none;width:44px;height:44px;border-radius:12px;border:0;background:rgba(255,255,255,.16);color:#fff;font-size:22px;cursor:pointer}
+.x:hover{background:rgba(255,255,255,.28)}
+.mtools{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;align-items:center}
+.mfilter{position:relative;flex:1 1 240px}
+.mfilter svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:#585d7a}
+.mfilter input{width:100%;height:44px;border-radius:12px;border:0;padding:0 12px 0 38px;font:inherit;font-size:16px;color:var(--deep);background:#fff}
+.mtools select{height:44px;border-radius:12px;border:0;padding:0 12px;font:inherit;font-size:15px;font-weight:600;color:var(--deep);background:#fff}
+.mtog{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 14px;border-radius:12px;background:rgba(255,255,255,.16);font-weight:600;font-size:15px;cursor:pointer}
+.mtog input{width:18px;height:18px;margin:0;accent-color:var(--hl)}
+.srcs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-top:10px}
+.srcs::-webkit-scrollbar{display:none}
+.src{flex:none;height:34px;padding:0 12px;border-radius:999px;border:1.5px solid rgba(255,255,255,.45);background:transparent;color:#fff;font:inherit;font-size:14px;font-weight:700;cursor:pointer}
+.src[aria-pressed=true]{background:#fff;color:var(--cob);border-color:#fff}
+.mbody{flex:1;overflow-y:auto;padding:16px clamp(12px,3vw,28px) 24px;overscroll-behavior:contain}
+.mcount{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px;font-size:14px;color:var(--mute);margin-bottom:12px}
+.job{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:4px 16px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:10px;transition:border-color .15s,box-shadow .15s}
+.job:hover{border-color:var(--cob);box-shadow:0 14px 30px -20px rgba(16,19,43,.4)}
+.logo{width:52px;height:52px;border-radius:14px;background:color-mix(in srgb,var(--cob) 12%,transparent);color:var(--cob);display:grid;place-items:center;font-weight:900;font-size:18px;overflow:hidden}
+.logo img{width:100%;height:100%;object-fit:contain;background:#fff}
+.jt{font-size:17.5px;font-weight:800;line-height:1.25;margin:0}
+.jc{font-weight:600;color:var(--mute);font-size:15px;margin-top:2px}
+.meta{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:8px;font-size:14px;color:var(--mute)}
+.meta span{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.meta svg{width:15px;height:15px}
+.new{background:var(--teal);color:#fff;font-weight:800;font-size:12px;padding:2px 8px;border-radius:999px}
+.sal{color:var(--teal);font-weight:700}
+.res{grid-column:2/3;margin:8px 0 0;font-size:14.5px;color:var(--mute);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.jact{grid-column:3;grid-row:1/span 3;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.fonte{font-size:12.5px;font-weight:700;color:var(--mute);background:var(--line);padding:3px 9px;border-radius:999px;white-space:nowrap;max-width:180px;overflow:hidden;text-overflow:ellipsis}
+.apply{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 16px;border-radius:12px;background:var(--cob);color:#fff;font-weight:800;text-decoration:none;white-space:nowrap}
+.apply:hover{background:var(--cob2)}
+.job.seen .apply{background:var(--line);color:var(--ink)}
+.more{display:block;margin:16px auto 0;height:48px;padding:0 26px;border-radius:14px;border:2px solid var(--ink);background:transparent;color:var(--ink);font:inherit;font-weight:800;cursor:pointer}
+.sk{height:118px;border-radius:18px;margin-bottom:10px;background:linear-gradient(90deg,var(--line) 0%,var(--card) 50%,var(--line) 100%);background-size:200% 100%;animation:sh 1.2s linear infinite}
+@keyframes sh{to{background-position:-200% 0}}
+.state{text-align:center;padding:48px 16px;max-width:520px;margin:0 auto}
+.state b{display:block;font-size:20px;margin-bottom:6px}
+.state p{color:var(--mute);margin:0 0 16px}
+.state button{height:46px;padding:0 20px;border-radius:12px;border:0;background:var(--ink);color:var(--bg);font:inherit;font-weight:800;cursor:pointer}
+body.lock{overflow:hidden}
+@media(max-width:700px){.sheet{border-radius:0;height:100%}.modal{padding:0}.job{grid-template-columns:44px minmax(0,1fr)}.logo{width:44px;height:44px}.res,.bate{grid-column:1/-1}.jact{grid-column:1/-1;grid-row:auto;flex-direction:row;justify-content:space-between;align-items:center;margin-top:10px}}
+
 @media(max-width:900px){.hero .wrap{grid-template-columns:minmax(0,1fr)}.art{order:-1;max-width:420px;width:100%;margin:-8px auto 0;aspect-ratio:1.5/1}.brand{margin-bottom:8px}}
 @media(max-width:600px){.row{grid-template-columns:minmax(0,1fr)}.prog .track{width:80px}.lead{font-size:16px}.art{aspect-ratio:1.6/1}}
 @media(prefers-reduced-motion:reduce){.float{animation:none}.card,.go{transition:none}.card:hover{transform:none}}
@@ -142,6 +244,9 @@ footer .wrap{border-top:1px solid rgba(255,255,255,.12);padding-top:18px}
   <symbol id="i-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4V5Z"/><path d="M8 9.5h8M8 12.5h5" stroke-linecap="round"/></g></symbol>
   <symbol id="i-cap" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5L2 9Z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/></g></symbol>
   <symbol id="i-bell" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15L6 16Z"/><path d="M10 21h4"/></g></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6V3Z"/><path d="M14 3v4h4M9 12h6M9 16h6" stroke-linecap="round"/></g></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M4 15v4h16v-4"/></g></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></g></symbol>
   <symbol id="i-swap" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h14l-3-3M20 16H6l3 3"/></g></symbol>
 </svg>
 
@@ -151,7 +256,12 @@ footer .wrap{border-top:1px solid rgba(255,255,255,.12);padding-top:18px}
       <div class="brand"><i>CV</i> Caça-vagas</div>
       <h1>Ache a vaga <span>antes</span> de todo mundo.</h1>
       <p class="lead">Digite sua área e abra, de uma vez, buscas prontas em 30 lugares, inclusive as vagas que as empresas anunciam de graça e não aparecem nos portais.</p>
-      <form class="panel" id="f" autocomplete="off">
+      <div class="panel">
+      <div class="modes" role="group" aria-label="Como buscar">
+        <button type="button" class="mode" data-m="area" aria-pressed="true"><svg><use href="#i-search"/></svg>Buscar por área</button>
+        <button type="button" class="mode" data-m="cv" aria-pressed="false"><svg><use href="#i-doc"/></svg>Enviar currículo <span class="newtag">novo</span></button>
+      </div>
+      <form id="f" autocomplete="off">
         <div class="row">
           <div class="field"><svg><use href="#i-search"/></svg><label for="area">Área ou cargo</label><input id="area" type="text" placeholder="ex.: auxiliar administrativo" required></div>
           <div class="field"><svg><use href="#i-pin"/></svg><label for="city">Cidade</label><input id="city" type="text" placeholder="opcional"></div>
@@ -163,6 +273,36 @@ footer .wrap{border-top:1px solid rgba(255,255,255,.12);padding-top:18px}
         </div>
         <button class="go" type="submit">Buscar vagas <b>30 fontes</b></button>
       </form>
+      <div id="cvbox" hidden>
+        <label class="drop" id="drop">
+          <input type="file" id="cvfile" accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain">
+          <span class="dropic"><svg><use href="#i-upload"/></svg></span>
+          <b>Arraste seu currículo aqui ou toque para escolher</b>
+          <span>PDF, Word (.docx) ou texto · até 5 MB</span>
+        </label>
+        <details class="paste"><summary>Prefere colar o texto do currículo?</summary>
+          <textarea id="cvtext" rows="6" placeholder="Cole aqui o conteúdo do seu currículo"></textarea>
+          <button type="button" class="mini" id="cvPasteBtn">Analisar texto</button>
+        </details>
+        <div class="cvstatus" id="cvStatus" role="status"></div>
+        <div id="perfil" hidden>
+          <div class="pf-h"><div><b>Seu perfil</b> <span id="pfVia"></span></div><button type="button" class="link" id="cvReset">Trocar currículo</button></div>
+          <div class="pf-l">Cargos que vamos buscar <small>os 4 primeiros entram na busca</small></div>
+          <div class="pchips" id="pfCargos"></div>
+          <div class="addrow"><input id="addCargo" type="text" placeholder="Adicionar cargo" aria-label="Adicionar cargo"><button type="button" class="mini" data-add="cargos">Adicionar</button></div>
+          <div class="pf-l">Habilidades encontradas <small>usadas para medir a compatibilidade</small></div>
+          <div class="pchips" id="pfHabs"></div>
+          <div class="addrow"><input id="addHab" type="text" placeholder="Adicionar habilidade" aria-label="Adicionar habilidade"><button type="button" class="mini" data-add="habilidades">Adicionar</button></div>
+          <div class="row" style="margin-top:12px">
+            <div class="field"><svg><use href="#i-pin"/></svg><label for="pfCity">Cidade</label><input id="pfCity" type="text" placeholder="opcional"></div>
+            <div class="field"><svg><use href="#i-clock"/></svg><label for="pfPer">Publicadas</label><select id="pfPer"><option value="">Qualquer data</option><option value="w">Última semana</option><option value="m" selected>Último mês</option></select></div>
+          </div>
+          <div class="row2"><label class="tog"><input type="checkbox" id="pfRem"> Só remoto</label></div>
+          <button class="go" type="button" id="cvGo">Buscar vagas compatíveis</button>
+        </div>
+        <p class="priv"><svg><use href="#i-lock"/></svg>O arquivo é lido no seu navegador. Só o texto vai para análise, e nada fica guardado.</p>
+      </div>
+      </div>
       <div class="ai" id="ai">
         <div class="aihead"><p>Procurando com outros nomes você acha mais vagas.</p><button type="button" class="aibtn" id="aiBtn">Sugerir cargos parecidos</button></div>
         <div class="aistatus" id="aiStatus"></div>
@@ -228,7 +368,26 @@ footer .wrap{border-top:1px solid rgba(255,255,255,.12);padding-top:18px}
     <div class="tip"><div class="ic"><svg><use href="#i-swap"/></svg></div><b>Troque o nome do cargo</b><p>"Auxiliar de escritório" e "assistente administrativo" são a mesma vaga com nomes diferentes. Teste variações, e a sugestão com IA ajuda nisso.</p></div>
   </div>
 </div></section>
-<footer><div class="wrap">O Caça-vagas monta as buscas e abre cada uma no site de origem; a inscrição acontece lá, direto com a empresa ou o portal.</div></footer>
+<footer><div class="wrap">O Caça-vagas reúne vagas da Gupy e de agregadores de vagas, e monta buscas prontas para outros sites. A inscrição acontece no site de origem, direto com a empresa ou o portal.</div></footer>
+
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="scrim" data-close></div>
+  <div class="sheet">
+    <div class="mhead">
+      <div class="mtop">
+        <div><h2 id="mTitle">Vagas encontradas</h2><p id="mSub">Buscando…</p></div>
+        <button class="x" type="button" data-close aria-label="Fechar">✕</button>
+      </div>
+      <div class="mtools">
+        <div class="mfilter"><svg><use href="#i-search"/></svg><input id="mq" type="text" placeholder="Filtrar por cargo, empresa ou cidade" aria-label="Filtrar vagas"></div>
+        <select id="mord" aria-label="Ordenar"><option value="score">Mais compatíveis</option><option value="date">Mais recentes</option><option value="co">Empresa (A–Z)</option><option value="ti">Cargo (A–Z)</option></select>
+        <label class="mtog"><input type="checkbox" id="mrem"> Só remoto</label>
+      </div>
+      <div class="srcs" id="srcs"></div>
+    </div>
+    <div class="mbody" id="mbody"></div>
+  </div>
+</div>
 
 <script>
 {
@@ -308,8 +467,9 @@ function loadSeen(){try{seen=new Set(JSON.parse(localStorage.getItem(key())||'[]
 function saveSeen(){try{localStorage.setItem(key(),JSON.stringify([...seen]))}catch(e){}}
 
 function progress(total){
-  $('progTxt').textContent=`${seen.size} de ${total} abertas`;
-  $('fill').style.width=(total?Math.min(100,seen.size/total*100):0)+'%';
+  const n=[...seen].filter(s=>!s.startsWith('job:')).length;
+  $('progTxt').textContent=`${n} de ${total} abertas`;
+  $('fill').style.width=(total?Math.min(100,n/total*100):0)+'%';
 }
 
 function render(scroll){
@@ -322,7 +482,7 @@ function render(scroll){
   $('tabs').innerHTML=Object.entries(GROUPS).map(([k,g])=>`<button type="button" class="tab" data-t="${k}" aria-pressed="${tab===k}" style="--c:${g.c||'currentColor'}">${k==='all'?'':'<i></i>'}${esc(g.n)} <small>${k==='all'?total:all[k].length}</small></button>`).join('');
   const where=c.rem?'em vagas remotas':(c.city?'em '+c.city:'em todo o Brasil');
   const keys=tab==='all'?Object.keys(all):[tab];
-  $('out').innerHTML=`<div class="head"><h2>Vagas de <em>${esc(c.raw)}</em> ${esc(where)}</h2><p>${esc($('per').selectedOptions[0].text)} · toque num cartão para abrir a busca</p></div>
+  $('out').innerHTML=`<div class="listcta"><div><b>Ver todas as vagas numa lista só</b><span>Vagas da Gupy, de sites de empresas e de agregadores, sem sair da página.</span></div><button type="button" id="openList">Abrir lista de vagas</button></div><div class="head"><h2>Vagas de <em>${esc(c.raw)}</em> ${esc(where)}</h2><p>${esc($('per').selectedOptions[0].text)} · toque num cartão para abrir a busca</p></div>
   ${keys.map(k=>{const g=GROUPS[k];return `<section class="group"><div class="ghead"><div class="ic" style="--c:${g.c};--on:${g.on||'#fff'}"><svg><use href="#${g.icon}"/></svg></div><div><h3>${esc(GTITLE[k])}</h3><p>${esc(g.p)}</p></div></div>
     <div class="grid">${all[k].map(i=>`<a class="card${seen.has(i.n)?' seen':''}" data-k="${k}" data-n="${esc(i.n)}" style="--c:${g.c}" href="${esc(i.u)}" target="_blank" rel="noopener">
       <div class="top"><div class="mono">${esc(i.m)}</div><b>${esc(i.n)}</b></div>
@@ -335,7 +495,168 @@ function render(scroll){
 
 $('out').addEventListener('click',e=>{const a=e.target.closest('.card');if(!a)return;seen.add(a.dataset.n);saveSeen();a.classList.add('seen');progress(TOTAL)});
 $('tabs').addEventListener('click',e=>{const b=e.target.closest('.tab');if(!b)return;tab=b.dataset.t;render(true)});
-$('f').addEventListener('submit',e=>{e.preventDefault();tab='all';render(true)});
+$('f').addEventListener('submit',e=>{e.preventDefault();tab='all';render(false);openModal()});
+$('out').addEventListener('click',e=>{if(e.target.closest('#openList'))openModal()});
+
+/* ---------- LISTA DE VAGAS (modal) ---------- */
+const M={all:[],src:'all',shown:0,step:30,last:null,key:''};
+const DAY=864e5;
+function ago(iso){if(!iso)return'';const d=Math.floor((Date.now()-Date.parse(iso))/DAY);return d<=0?'hoje':d===1?'ontem':d<30?`há ${d} dias`:`há ${Math.floor(d/30)} ${d<60?'mês':'meses'}`}
+function initials(s){return (s||'?').split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase()}
+function srcName(f){return String(f||'').split(' · ')[0]}
+
+function openModal(){
+  const c=ctx(); if(!c.raw)return;
+  $('modal').hidden=false;document.body.classList.add('lock');
+  $('mTitle').textContent=`Vagas de ${c.raw}`;
+  $('mrem').checked=c.rem;$('mord').value='date';
+  setTimeout(()=>$('mq').focus(),50);
+  const key=JSON.stringify([c.raw,c.city,c.rem,c.per]);
+  if(key===M.key&&M.all.length)return paint();
+  M.key=key;load(c);
+}
+function closeModal(){$('modal').hidden=true;document.body.classList.remove('lock')}
+$('modal').addEventListener('click',e=>{if(e.target.closest('[data-close]'))closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('modal').hidden)closeModal()});
+
+async function load(c){
+  M.all=[];M.src='all';$('mq').value='';
+  $('mSub').textContent=`Buscando ${c.rem?'vagas remotas':c.city?'em '+c.city:'em todo o Brasil'}…`;
+  $('srcs').innerHTML='';
+  $('mbody').innerHTML='<div class="sk"></div>'.repeat(6);
+  const p=new URLSearchParams({q:c.raw,cidade:c.rem?'':c.city,remoto:c.rem?'1':'',periodo:c.per});
+  try{
+    const d=await api('/api/vagas?'+p);
+    receive(d,$('per').selectedOptions[0].text.toLowerCase());
+  }catch(err){fail(err)}
+}
+async function api(url,body){
+  const r=await fetch(url,body?{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(body)}:{headers:{Accept:'application/json'}});
+  const ct=r.headers.get('content-type')||'';
+  if(!ct.includes('json'))throw new Error('offline');
+  const d=await r.json();
+  if(!r.ok)throw new Error(d.erro||'Erro na busca');
+  return d;
+}
+function receive(d,extra){
+  M.all=d.vagas||[];M.last=d;
+  const ok=Object.entries(d.fontes||{}).filter(([,v])=>v.ok).map(([k])=>k);
+  const NOMES={gupy:'Gupy',adzuna:'Adzuna',jooble:'Jooble',web:'Sites de empresas',gjobs:'Google Vagas'};
+  $('mSub').textContent=`${M.all.length} vagas · ${extra} · fontes: ${ok.length?ok.map(k=>NOMES[k]||k).join(', '):'nenhuma respondeu'}`;
+  paint();
+}
+function fail(err){{
+    const offline=err.message==='offline'||err instanceof TypeError;
+    $('mSub').textContent='Não foi possível carregar a lista';
+    $('mbody').innerHTML=`<div class="state"><b>${offline?'A lista precisa do servidor do Caça-vagas':'Algo deu errado na busca'}</b><p>${offline?'Esta página está aberta sem o servidor. Rode <code>node server.js</code> e acesse pelo endereço que ele mostrar. Enquanto isso, use as buscas prontas nos sites.':esc(err.message)}</p><button type="button" data-close>Ver buscas nos sites</button></div>`;
+  }
+}
+
+function filtered(){
+  const t=$('mq').value.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const rem=$('mrem').checked, ord=$('mord').value;
+  let l=M.all.filter(v=>(M.src==='all'||srcName(v.fonte)===M.src)&&(!rem||v.remoto)&&(!t||(v.titulo+' '+v.empresa+' '+v.cidade+' '+v.estado).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').includes(t)));
+  if(ord==='score')l=[...l].sort((a,b)=>(b.score??-1)-(a.score??-1));
+  if(ord==='co')l=[...l].sort((a,b)=>(a.empresa||'~').localeCompare(b.empresa||'~','pt'));
+  if(ord==='ti')l=[...l].sort((a,b)=>a.titulo.localeCompare(b.titulo,'pt'));
+  return l;
+}
+
+function jobHTML(v,i){
+  const isNew=v.publicada&&Date.now()-Date.parse(v.publicada)<2*DAY;
+  const place=[v.cidade,v.estado].filter(Boolean).join(' – ');
+  return `<article class="job${seen.has('job:'+v.url)?' seen':''}">
+    <div class="logo">${v.logo?`<img src="${esc(v.logo)}" alt="" loading="lazy" onerror="this.replaceWith(document.createTextNode('${esc(initials(v.empresa))}'))">`:esc(initials(v.empresa||v.titulo))}</div>
+    <div><h3 class="jt">${esc(v.titulo)}</h3><div class="jc">${esc(v.empresa||'Empresa não informada')}</div>
+      <div class="meta">${isNew?'<span class="new">Nova</span>':''}${place?`<span><svg><use href="#i-pin"/></svg>${esc(place)}</span>`:''}${v.modelo||v.remoto?`<span><svg><use href="#i-globe"/></svg>${esc(v.modelo||'Remoto')}</span>`:''}${v.publicada?`<span><svg><use href="#i-clock"/></svg>${ago(v.publicada)}</span>`:''}${v.salario?`<span class="sal">${esc(v.salario)}</span>`:''}</div></div>
+    ${v.resumo?`<p class="res">${esc(v.resumo)}</p>`:''}
+    ${v.bate&&v.bate.length?`<div class="bate">Bate com: ${v.bate.map(b=>`<span>${esc(b)}</span>`).join('')}</div>`:''}
+    <div class="jact">${v.score!=null?`<span class="score ${v.score>=70?'':v.score>=50?'mid':'low'}" style="--p:${v.score}" title="Compatibilidade com o seu currículo"><b>${v.score}%</b><small>compatível</small></span>`:''}<span class="fonte">${esc(v.fonte)}</span><a class="apply" data-i="${i}" href="${esc(v.url)}" target="_blank" rel="noopener">Candidatar-se ↗</a></div>
+  </article>`;
+}
+
+function paint(){
+  const counts={};M.all.forEach(v=>{const s=srcName(v.fonte);counts[s]=(counts[s]||0)+1});
+  $('srcs').innerHTML=[['all','Todas',M.all.length],...Object.entries(counts).sort((a,b)=>b[1]-a[1]).map(([k,n])=>[k,k,n])].map(([k,n,c])=>`<button type="button" class="src" data-s="${esc(k)}" aria-pressed="${M.src===k}">${esc(n)} · ${c}</button>`).join('');
+  const l=filtered();M.shown=Math.min(M.step,l.length);
+  const anyOk=Object.values(M.last?.fontes||{}).some(f=>f.ok);
+  if(!M.all.length&&!anyOk){$('mbody').innerHTML=`<div class="state"><b>As fontes de vagas não responderam agora</b><p>Tente de novo em alguns minutos. Enquanto isso, as buscas prontas nos sites continuam funcionando.</p><button type="button" data-close>Ver buscas nos sites</button></div>`;return}
+  if(!M.all.length){$('mbody').innerHTML=`<div class="state"><b>Nenhuma vaga encontrada nas fontes integradas</b><p>Tente outro nome de cargo, aumente o período ou tire a cidade. As buscas prontas nos sites continuam disponíveis.</p><button type="button" data-close>Ver buscas nos sites</button></div>`;return}
+  if(!l.length){$('mbody').innerHTML=`<div class="state"><b>Nenhuma vaga com esses filtros</b><p>Limpe o filtro de texto ou escolha outra fonte.</p></div>`;return}
+  $('mbody').innerHTML=`<div class="mcount"><span>Mostrando <b id="shown">${M.shown}</b> de ${l.length} vagas</span><span>A inscrição abre no site da vaga</span></div><div id="jobs">${l.slice(0,M.shown).map(jobHTML).join('')}</div>${l.length>M.shown?'<button type="button" class="more" id="more">Mostrar mais vagas</button>':''}`;
+  M.cur=l;$('mbody').scrollTop=0;
+}
+$('mbody').addEventListener('click',e=>{
+  if(e.target.closest('#more')){const l=M.cur,n=Math.min(M.shown+M.step,l.length);$('jobs').insertAdjacentHTML('beforeend',l.slice(M.shown,n).map(jobHTML).join(''));M.shown=n;$('shown').textContent=n;if(n>=l.length)$('more').remove();return}
+  const a=e.target.closest('.apply');if(a){seen.add('job:'+a.href);saveSeen();a.closest('.job').classList.add('seen')}
+});
+$('srcs').addEventListener('click',e=>{const b=e.target.closest('.src');if(!b)return;M.src=b.dataset.s;paint()});
+let ft;$('mq').addEventListener('input',()=>{clearTimeout(ft);ft=setTimeout(paint,150)});
+$('mord').addEventListener('change',paint);$('mrem').addEventListener('change',paint);
+
+/* ---------- MODO CURRÍCULO ---------- */
+const P={cargos:[],habilidades:[],cidade:'',nivel:'',via:''};
+document.querySelector('.modes').addEventListener('click',e=>{
+  const b=e.target.closest('.mode');if(!b)return;
+  document.querySelectorAll('.mode').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  const cv=b.dataset.m==='cv';$('f').hidden=cv;$('cvbox').hidden=!cv;
+});
+function status(t,err){$('cvStatus').textContent=t;$('cvStatus').classList.toggle('err',!!err)}
+function loadLib(src){return new Promise((ok,no)=>{if(document.querySelector(`script[src="${src}"]`))return ok();const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=()=>no(new Error('lib'));document.head.appendChild(s)})}
+const PDFJS='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',PDFW='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js',MAMMOTH='https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js';
+async function readFile(f){
+  const ext=(f.name.split('.').pop()||'').toLowerCase();
+  if(f.size>5*1024*1024)throw new Error('O arquivo passa de 5 MB.');
+  if(ext==='txt'||f.type==='text/plain')return f.text();
+  if(ext==='pdf'||f.type==='application/pdf'){
+    await loadLib(PDFJS);const lib=window.pdfjsLib;lib.GlobalWorkerOptions.workerSrc=PDFW;
+    const doc=await lib.getDocument({data:new Uint8Array(await f.arrayBuffer())}).promise;
+    let out='';
+    for(let i=1;i<=Math.min(doc.numPages,8);i++){const c=await (await doc.getPage(i)).getTextContent();let y=null;for(const it of c.items){const ny=it.transform?it.transform[5]:y;if(y!==null&&Math.abs(ny-y)>2&&!out.endsWith('\n'))out+='\n';out+=it.str+(it.hasEOL?'\n':' ');y=ny}out+='\n'}
+    return out;
+  }
+  if(ext==='docx'){await loadLib(MAMMOTH);return (await window.mammoth.extractRawText({arrayBuffer:await f.arrayBuffer()})).value}
+  if(ext==='doc')throw new Error('Arquivos .doc antigos não são lidos. Salve como .docx ou PDF, ou cole o texto.');
+  throw new Error('Formato não suportado. Use PDF, .docx ou .txt.');
+}
+async function analyze(text){
+  text=(text||'').replace(/\u0000/g,'').trim();
+  if(text.length<80){status('Não encontrei texto suficiente. Se o PDF for uma imagem escaneada, cole o texto do currículo.',true);return}
+  status('Analisando seu currículo…');
+  try{
+    const d=await api('/api/perfil',{texto:text.slice(0,60000)});
+    Object.assign(P,{cargos:d.cargos||[],habilidades:d.habilidades||[],cidade:d.cidade||'',nivel:d.nivel||'',via:d.via||''});
+    $('pfCity').value=P.cidade;$('pfVia').textContent=(P.via==='ia'?'analisado com IA':'análise automática')+(P.nivel?' · '+P.nivel:'');
+    drawPerfil();$('perfil').hidden=false;$('drop').hidden=true;document.querySelector('.paste').hidden=true;
+    status(P.cargos.length?`Encontrei ${P.cargos.length} cargo${P.cargos.length>1?'s':''} e ${P.habilidades.length} habilidade${P.habilidades.length===1?'':'s'}. Confira e ajuste se quiser.`:'Não identifiquei o cargo. Adicione abaixo o cargo que você procura.',!P.cargos.length);
+  }catch(err){status(err.message==='offline'||err instanceof TypeError?'A análise precisa do servidor do Caça-vagas (node server.js).':err.message,true)}
+}
+function drawPerfil(){
+  $('pfCargos').innerHTML=P.cargos.map((c,i)=>`<span class="pchip${i<4?' on':''}">${esc(c)}<button type="button" aria-label="Remover ${esc(c)}" data-del="cargos" data-i="${i}">✕</button></span>`).join('')||'<span class="pf-l" style="font-weight:500">Nenhum cargo ainda</span>';
+  $('pfHabs').innerHTML=P.habilidades.map((c,i)=>`<span class="pchip">${esc(c)}<button type="button" aria-label="Remover ${esc(c)}" data-del="habilidades" data-i="${i}">✕</button></span>`).join('')||'<span class="pf-l" style="font-weight:500">Nenhuma habilidade identificada</span>';
+}
+$('perfil').addEventListener('click',e=>{
+  const d=e.target.closest('[data-del]');if(d){P[d.dataset.del].splice(+d.dataset.i,1);drawPerfil();return}
+  const a=e.target.closest('[data-add]');if(a){const inp=a.dataset.add==='cargos'?$('addCargo'):$('addHab');const v=inp.value.trim();if(v&&!P[a.dataset.add].some(x=>x.toLowerCase()===v.toLowerCase())){a.dataset.add==='cargos'?P.cargos.unshift(v):P.habilidades.push(v)}inp.value='';drawPerfil()}
+});
+['addCargo','addHab'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();$(id).nextElementSibling.click()}}));
+$('cvfile').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;status(`Lendo ${f.name}…`);try{await analyze(await readFile(f))}catch(err){status(err.message==='lib'?'Não consegui carregar o leitor de arquivos. Verifique a internet ou cole o texto.':err.message,true)}e.target.value=''});
+const drop=$('drop');
+['dragenter','dragover'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',async e=>{const f=e.dataTransfer.files[0];if(!f)return;status(`Lendo ${f.name}…`);try{await analyze(await readFile(f))}catch(err){status(err.message==='lib'?'Não consegui carregar o leitor de arquivos. Cole o texto.':err.message,true)}});
+$('cvPasteBtn').addEventListener('click',()=>analyze($('cvtext').value));
+$('cvReset').addEventListener('click',()=>{$('perfil').hidden=true;$('drop').hidden=false;document.querySelector('.paste').hidden=false;status('')});
+$('cvGo').addEventListener('click',async()=>{
+  if(!P.cargos.length){status('Adicione ao menos um cargo.',true);return}
+  const body={cargos:P.cargos.slice(0,4),habilidades:P.habilidades,cidade:$('pfRem').checked?'':$('pfCity').value.trim(),remoto:$('pfRem').checked,periodo:$('pfPer').value};
+  $('modal').hidden=false;document.body.classList.add('lock');
+  $('mTitle').textContent='Vagas compatíveis com seu currículo';$('mord').value='score';$('mrem').checked=false;$('mq').value='';
+  M.key='cv:'+JSON.stringify(body);M.src='all';
+  $('mSub').textContent=`Buscando por ${body.cargos.join(', ')}…`;$('srcs').innerHTML='';
+  $('mbody').innerHTML='<div class="sk"></div>'.repeat(6);
+  try{const d=await api('/api/compativeis',body);receive(d,`buscando por ${(d.buscou||body.cargos).join(', ')}`)}catch(err){fail(err)}
+});
 ['per','rem','exact'].forEach(id=>$(id).addEventListener('change',()=>{if($('area').value.trim())render()}));
 
 let restored=false;

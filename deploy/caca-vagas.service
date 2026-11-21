@@ -1,0 +1,14 @@
+[Unit]
+Description=Caça-vagas (achevagas.monitor.ind.br)
+After=network.target
+
+[Service]
+WorkingDirectory=/var/www/caca-vagas
+ExecStart=/usr/bin/node server.js
+Restart=always
+RestartSec=5
+Environment=PORT=8085
+User=www-data
+
+[Install]
+WantedBy=multi-user.target
